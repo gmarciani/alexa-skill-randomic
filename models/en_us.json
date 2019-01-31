@@ -1,0 +1,129 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "randomic",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "GetNewRandomThing",
+                    "slots": [
+                        {
+                            "name": "thing",
+                            "type": "thingType",
+                            "samples": [
+                                "a {thing}",
+                                "tell me a {thing}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "tell me a {thing}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "thingType",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "number"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "letter"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "string"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lovely phrase"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "GetNewRandomThing",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "thing",
+                            "type": "thingType",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.443941845354.94360604965",
+                                "elicitation": "Elicit.Slot.443941845354.94360604965"
+                            },
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.443941845354.94360604965.1479121166762"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.443941845354.94360604965",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What random thing do you want?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.443941845354.94360604965",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I heard that you want a random {thing}. Is that correct?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.443941845354.94360604965.1479121166762",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I don't know random {thing}. What random thing do you want?"
+                    }
+                ]
+            }
+        ]
+    }
+}
